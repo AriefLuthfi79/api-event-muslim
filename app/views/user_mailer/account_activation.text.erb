@@ -1,0 +1,5 @@
+Hi <%= @user.email %>
+
+Welcome to the sample app! Click on the link below to activating your account:
+
+<%= link_to "Confirm", confirm_email_url(@user.confirm_token) %>
