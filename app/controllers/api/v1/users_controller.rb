@@ -1,7 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   # Only specific action must authenticated
-  skip_before_action :authenticate_user
+  skip_before_action :authenticate_user, only: :create
 
+  # Create user when register
   def create
     user = User.create(user_params)
 
@@ -14,9 +15,30 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # Show the current user
+  def show_events
+    render json: current_user
+  end
+
+  # Update the current user
+  def update
+    user = current_user
+    if user.update(update_params)
+      render json: { status: { updated: "Ok" } }
+    else
+      render json: user.errors.full_messages
+    end
+  end
+
   private
 
+  # Permit the user params
   def user_params
     params.permit(:email, :password, :password_confirmation)
+  end
+
+  # Permit the update params
+  def update_params
+    params.permit(:surname, :bio)
   end
 end

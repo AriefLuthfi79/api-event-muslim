@@ -2,12 +2,20 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      
       resources :auth, only: :create
-      resources :users, only: :create do
-        resources :events, only: [:create, :show]
-        get 'events', to: 'events#show_events'
+      
+      resources :users, only: [:create, :update]
+
+      get 'users/show_events', to: 'users#show_events'
+      
+      resources :events, only: :create
+      
+      resources :events, only: [:show, :index] do
+        resources :attendees, only: :create
       end
-      resources :events, only: :index
+
+      resources :ticket_details, only: :index
     end
   end
 

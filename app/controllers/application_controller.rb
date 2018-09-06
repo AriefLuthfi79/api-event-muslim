@@ -5,4 +5,9 @@ class ApplicationController < ActionController::API
     error: 'Not Found'}, status: :not_found
   }
 
+  def logged_in?
+  	!current_user.nil?
+  end
+
+  
 end

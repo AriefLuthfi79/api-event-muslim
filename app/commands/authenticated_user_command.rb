@@ -34,7 +34,6 @@ class AuthenticatedUserCommand < BaseCommand
   def contents
     {
       user_id: user.id,
-      exp: 24.hours.from_now.to_i
     }
   end
 end
