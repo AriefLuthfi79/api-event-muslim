@@ -1,5 +1,5 @@
 class Api::V1::AttendeesController < ApplicationController
-		
+
 	# Only create and destroy attending
 	def create
 		event = Event.find(params[:event_id])

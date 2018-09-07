@@ -11,21 +11,24 @@ class UserSerializer < ActiveModel::Serializer
   			event_name: object.name,
   			event_description: object.description,
   			time_event: object.time_event,
+  			date: object.date,
+  			image: object.image_uri,
   			disable_event: disabled?(object)
   		}
   	end
   end
 
   def attended_events
-  	self.object.active_attends.map do |object|
-  		event = Event.find(object.attended_event_id)
-  		{
-  			event_id: event.id,
-  			event_name: event.name,
-  			event_description: event.description,
-  			time_event: event.time_event
-  		}
-  	end
+  	self.object.attending.map do |object|
+	  	{
+	  		event_id: object.id,
+				event_name: object.name,
+				event_description: object.description,
+				time_event: object.time_event,
+				date: object.date,
+				image: object.image_uri
+			}
+		end
   end
 
   private
