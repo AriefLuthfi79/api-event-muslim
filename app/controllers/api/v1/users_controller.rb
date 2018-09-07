@@ -1,7 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   # Only specific action must authenticated
   skip_before_action :authenticate_user, only: :create
-
   # Create user when register
   def create
     user = User.create(user_params)
