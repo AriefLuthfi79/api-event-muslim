@@ -20,7 +20,7 @@ class Api::V1::EventsController < ApplicationController
     if @event.save && @event.has_valid_date?
       ticket = @event.create_ticket(ticket_params)
       if ticket
-        render json: { status: { created: "OK" } }
+        render json: { status: { created: "OK" , errors: ticket.errors.full_messages } }
       else
         render json: { status: { error: ticket.errors } }
       end
