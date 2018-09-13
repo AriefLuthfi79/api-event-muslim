@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       
       resources :auth, only: :create
       
-      resources :users, only: [:create, :update]
+      resources :users, only: :create
+      put 'users/update_user', to: 'users#update_user'
 
       get 'users/show_events', to: 'users#show_events'
       

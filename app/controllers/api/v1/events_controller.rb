@@ -48,8 +48,6 @@ class Api::V1::EventsController < ApplicationController
       @event = new_event
     when :show, :destroy
       @event = Event.find(params[:id])
-    when :show_events
-      @event = current_user.events.all
     end
   end
 
