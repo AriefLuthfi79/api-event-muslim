@@ -19,10 +19,10 @@ class Api::V1::EventsController < ApplicationController
     @event.user_id = current_user.id
     if @event.save && @event.has_valid_date?
       ticket = @event.create_ticket(ticket_params)
-      if ticket
+      unless ticket.errors.empty?
         render json: { status: { created: "OK" , errors: ticket.errors.full_messages } }
       else
-        render json: { status: { error: ticket.errors } }
+        render json: { status: { error: ticket.errors.full_messages } }
       end
     else
       render json: @event.errors, status: :unprocessable_entity

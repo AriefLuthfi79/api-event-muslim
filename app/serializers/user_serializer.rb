@@ -13,7 +13,9 @@ class UserSerializer < ActiveModel::Serializer
   			time_event: object.time_event,
   			date: object.date,
   			image: object.image_uri,
-  			disable_event: disabled?(object)
+  			place: object.place,
+  			disable_event: disabled?(object),
+  			registered: attends(object)
   		}
   	end
   end
@@ -26,14 +28,24 @@ class UserSerializer < ActiveModel::Serializer
 				event_description: object.description,
 				time_event: object.time_event,
 				date: object.date,
-				image: object.image_uri
+				image: object.image_uri,
+				place: object.place
 			}
 		end
   end
 
   private
 
+  def attends(object)
+  	Event.find(object.id).attendees.map do |obj|
+  		{
+  			user_id: obj.id,
+  			email: obj.email
+  		}
+  	end
+  end
+
   def disabled?(object)
-  	Event.find(object.id).time_event < Time.now
+  	Event.find(object.id).time_event <= Time.now
   end
 end

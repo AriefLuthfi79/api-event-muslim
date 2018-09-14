@@ -1,4 +1,4 @@
-Rails.application.routes.default_url_options[:host] = 'iussu.serveo.net'
+Rails.application.routes.default_url_options[:host] = '211.11.1.83:8000'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -35,7 +35,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { host: 'iussu.serveo.net', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: '211.11.1.83:8000', protocol: 'https' }
 
   config.action_mailer.perform_caching = false
 
