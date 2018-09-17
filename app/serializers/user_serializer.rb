@@ -12,7 +12,7 @@ class UserSerializer < ActiveModel::Serializer
   			event_description: object.description,
   			time_event: object.time_event,
   			date: object.date,
-  			image: object.image_uri,
+  			image: image(object.image),
   			place: object.place,
   			disable_event: disabled?(object),
   			registered: attends(object)
@@ -28,7 +28,7 @@ class UserSerializer < ActiveModel::Serializer
 				event_description: object.description,
 				time_event: object.time_event,
 				date: object.date,
-				image: object.image_uri,
+				image: image(object.image),
 				place: object.place
 			}
 		end
@@ -43,6 +43,10 @@ class UserSerializer < ActiveModel::Serializer
   			email: obj.email
   		}	
   	end
+  end
+
+  def image(image)
+    Rails.application.routes.url_helpers.rails_blob_url(image)
   end
 
   def disabled?(object)
