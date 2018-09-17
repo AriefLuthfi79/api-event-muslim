@@ -18,12 +18,8 @@ class Api::V1::EventsController < ApplicationController
   def create
     @event.user_id = current_user.id
     if @event.save && @event.has_valid_date?
-      ticket = @event.create_ticket(ticket_params)
-      unless ticket.errors.empty?
-        render json: { status: { created: "OK" , errors: ticket.errors.full_messages } }
-      else
-        render json: { status: { error: ticket.errors.full_messages } }
-      end
+      @event.create_ticket(ticket_params)
+      render json: { status: { created: "OK" } }
     else
       render json: @event.errors, status: :unprocessable_entity
     end
@@ -60,13 +56,13 @@ class Api::V1::EventsController < ApplicationController
                   :time_event,
                   :image,
                   :time,
-                  :place)
+                  :place,
+                  :quantity)
   end
 
   # Get params ticket
   def ticket_params
     params.permit(:ticket_name,
-                  :ticket_description,
-                  :quantity)
+                  :ticket_description)
   end
 end

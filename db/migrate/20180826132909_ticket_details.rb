@@ -1,6 +1,5 @@
 class TicketDetails < ActiveRecord::Migration[5.2]
   def change
-  	
   	create_table :ticket_details do |t|
   		t.bigint :ticket_id
   		t.bigint :attendee_id

@@ -32,13 +32,13 @@ class Event < ApplicationRecord
   end
 
   # Get mage url from active storage
-  def image_uri
-    if self.image.attached?
-      Rails.application.routes.url_helpers.rails_blob_url(self.image)
-    else
-      nil
-    end
-  end
+  # def image_uri
+  #   if self.image.attached?
+  #     Rails.application.routes.url_helpers.rails_blob_url(self.image)
+  #   else
+  #     nil
+  #   end
+  # end
 
   private
   # Validate image type

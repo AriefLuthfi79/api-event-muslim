@@ -6,8 +6,8 @@ class EventSerializer < ActiveModel::Serializer
              :date,
              :time_event,
              :place,
-             :total_registered,
              :quantity,
+             :total_registered,
              :image,
              :registered,
              :user
@@ -33,11 +33,7 @@ class EventSerializer < ActiveModel::Serializer
     self.object.attendees.ids.count
   end
 
-  def quantity
-    Event.find(self.object.id).ticket[:quantity]
-  end
-
   def image
-    self.object.image_uri
+    Rails.application.routes.url_helpers.rails_blob_url(self.object.image)
   end
 end

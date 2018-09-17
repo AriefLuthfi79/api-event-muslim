@@ -15,8 +15,7 @@ class UserSerializer < ActiveModel::Serializer
   			image: object.image_uri,
   			place: object.place,
   			disable_event: disabled?(object),
-  			registered: attends(object),
-  			quantity: object.ticket[:quantity]
+  			registered: attends(object)
   		}
   	end
   end
@@ -42,7 +41,7 @@ class UserSerializer < ActiveModel::Serializer
   		{
   			user_id: obj.id,
   			email: obj.email
-  		}
+  		}	
   	end
   end
 
