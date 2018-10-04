@@ -98,7 +98,7 @@
 #   # }
 # end
 
-Rails.application.routes.default_url_options[:host] = 'santrimandiri.org'
+Rails.application.routes.default_url_options[:host] = 'api-eventmuslim.herokuapp.com'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
