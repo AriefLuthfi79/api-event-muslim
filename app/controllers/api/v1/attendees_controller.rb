@@ -44,6 +44,6 @@ class Api::V1::AttendeesController < ApplicationController
 	end
 
 	def is_fulled?(event)
-		event.attendees.count > event.ticket[:quantity]
+		event.attendees.count >= event.ticket[:quantity]
 	end
 end

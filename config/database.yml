@@ -14,7 +14,7 @@ test:
   timeout: 3000000
 
 production:
-  adapter: sqlite3
-  database: db/cloned_production.sqlite3
+  adapter: posgresql
+  database: db/production.sqlite3
   pool: 5
 timeout: 3000000

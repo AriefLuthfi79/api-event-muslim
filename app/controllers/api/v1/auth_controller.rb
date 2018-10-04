@@ -6,7 +6,8 @@ class Api::V1::AuthController < ApplicationController
     token = AuthenticatedUserCommand.call(auth_params)
 
     if token.success?
-      render json: { token: token.result, user_id: JwtService.decode(token.result) }
+      user = JwtService.decode(token.result)
+      render json: { token: token.result, user_id: user, email: find_user_email(user[:user_id]) }
     else
       render json: { status: { error: token.errors } }
     end
@@ -16,5 +17,9 @@ class Api::V1::AuthController < ApplicationController
 
   def auth_params
     params.permit(:email, :password)
+  end
+
+  def find_user_email(id)
+    User.find(id).email
   end
 end

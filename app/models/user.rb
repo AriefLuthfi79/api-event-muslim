@@ -14,14 +14,9 @@ class User < ApplicationRecord
   
   validates_with EmailValidator
 
-  VALID_PASSWORD_REGEX = /\A
-    (?=.*[A-Z])        # Must contain a upper case character
-    (?=.*[[:^alnum:]]) # Must contain a symbol
-  /x
   has_secure_password
   validates :password, presence: true,
                        length: { minimum: 6 },
-                       format: { with: VALID_PASSWORD_REGEX },
                        allow_nil: true
   validates_presence_of :email
   validates_uniqueness_of :email, case_sensitive: false

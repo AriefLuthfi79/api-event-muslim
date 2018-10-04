@@ -5,7 +5,7 @@ class Api::V1::EventsController < ApplicationController
 
   # Shows all events in home
   def index
-    events = Event.all
+    events = Event.all.evaluate_event
     render json: events, each_serializer: EventSerializer
   end
 

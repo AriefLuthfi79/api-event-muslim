@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_one_attached :image
   
   # Event should has many attendees
+  has_many :list_attendees, class_name: :ListAttendee, dependent: :destroy
   has_many :passive_attends, class_name: :Attendee, foreign_key: :attended_event_id, dependent: :destroy
   has_many :attendees, through: :passive_attends, source: :attendee
   
@@ -17,9 +18,10 @@ class Event < ApplicationRecord
 
   # After validation title should be titleize
   after_validation :normalize_titleize
-
+  
   # Will return order by time (Descending)
   default_scope ->{ order(time_event: :desc) }
+  scope :evaluate_event, ->{ where("time_event > ?", Time.now.advance(days: -1)) }
 
   # Will selection time event if expired
   def past
@@ -39,6 +41,10 @@ class Event < ApplicationRecord
   #     nil
   #   end
   # end
+
+  def disabled?
+    self.time_event <= Time.now
+  end
 
   private
   # Validate image type

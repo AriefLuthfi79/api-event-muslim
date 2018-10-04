@@ -8,6 +8,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save
       # After save sending a mail to user email
       user.send_confirmation_email
+      user.mark_as_confirmated!
       render json: { status: { created: I18n.t('user_created.successfully') } }
     else
       render json: { errors: user.errors, status: 422 }

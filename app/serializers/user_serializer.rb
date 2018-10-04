@@ -10,10 +10,12 @@ class UserSerializer < ActiveModel::Serializer
   			event_id: object.id,
   			event_name: object.name,
   			event_description: object.description,
-  			time_event: object.time_event,
+  			time: object.time,
+        time_event: object.time_event,
   			date: object.date,
   			image: image(object.image),
   			place: object.place,
+  			quantity: object.quantity,
   			disable_event: disabled?(object),
   			registered: attends(object)
   		}
@@ -26,10 +28,12 @@ class UserSerializer < ActiveModel::Serializer
 	  		event_id: object.id,
 				event_name: object.name,
 				event_description: object.description,
-				time_event: object.time_event,
+				time: object.time,
+        time_event: object.time_event,
 				date: object.date,
 				image: image(object.image),
-				place: object.place
+				place: object.place,
+				quantity: object.quantity
 			}
 		end
   end
