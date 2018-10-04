@@ -22,6 +22,6 @@ Rails.application.routes.draw do
       resources :ticket_details, only: :index
     end
   end
-
+  root 'application#hello'
   get 'account_activation/:token', to: 'account_activations#confirm_email', as: :confirm_email
 end
