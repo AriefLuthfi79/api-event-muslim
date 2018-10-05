@@ -11,6 +11,7 @@ gem 'listen'
 gem 'rails-controller-testing'
 gem 'active_model_serializers'
 gem 'jwt'
+gem 'rails_12factor'
 # gem 'devise-jwt'
 # gem 'mini_magick', '~> 4.8'
 
