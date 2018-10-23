@@ -10,7 +10,9 @@ class EventSerializer < ActiveModel::Serializer
              :total_registered,
              :image,
              :registered,
-             :user
+             :user,
+             :longitude,
+             :latitude
 
   def user
     {
