@@ -1,4 +1,5 @@
 class AuthenticatedUserCommand < BaseCommand
+
   private
 
   # Getter for email and password
