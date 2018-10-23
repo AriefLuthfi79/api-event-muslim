@@ -57,7 +57,9 @@ class Api::V1::EventsController < ApplicationController
                   :image,
                   :time,
                   :place,
-                  :quantity)
+                  :quantity,
+                  :latitude,
+                  :longitude)
   end
 
   # Get params ticket
