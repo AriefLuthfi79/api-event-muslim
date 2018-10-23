@@ -25,6 +25,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3'
 end
 
 group :development do
